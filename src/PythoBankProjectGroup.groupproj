@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0CD8064D-5728-41E2-8662-ABD7A8AA2CE5}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Api\Authorization\Service\PythoAuthService.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Clients\Desktop\PythoDesktopClientVCL.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Api\PythoService.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PythoAuthService">
+        <MSBuild Projects="Api\Authorization\Service\PythoAuthService.dproj"/>
+    </Target>
+    <Target Name="PythoAuthService:Clean">
+        <MSBuild Projects="Api\Authorization\Service\PythoAuthService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PythoAuthService:Make">
+        <MSBuild Projects="Api\Authorization\Service\PythoAuthService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PythoDesktopClientVCL">
+        <MSBuild Projects="Clients\Desktop\PythoDesktopClientVCL.dproj"/>
+    </Target>
+    <Target Name="PythoDesktopClientVCL:Clean">
+        <MSBuild Projects="Clients\Desktop\PythoDesktopClientVCL.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PythoDesktopClientVCL:Make">
+        <MSBuild Projects="Clients\Desktop\PythoDesktopClientVCL.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PythoService">
+        <MSBuild Projects="Api\PythoService.dproj"/>
+    </Target>
+    <Target Name="PythoService:Clean">
+        <MSBuild Projects="Api\PythoService.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PythoService:Make">
+        <MSBuild Projects="Api\PythoService.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PythoAuthService;PythoDesktopClientVCL;PythoService"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PythoAuthService:Clean;PythoDesktopClientVCL:Clean;PythoService:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PythoAuthService:Make;PythoDesktopClientVCL:Make;PythoService:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
